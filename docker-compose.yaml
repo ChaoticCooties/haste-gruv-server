@@ -5,15 +5,17 @@ services:
     networks:
       - db-network
     environment:
-      - STORAGE_TYPE=memcached
-      - STORAGE_HOST=memcached
-      - STORAGE_PORT=11211
+      - STORAGE_TYPE=redis
+      - STORAGE_HOST=redis
+      - STORAGE_PORT=6379
     ports:
       - 7777:7777
-  memcached:
-    image: memcached:latest
+    restart: always
+  redis:
+    image: redis:latest
     networks:
       - db-network
+    restart: always
 
 networks:
   db-network:
